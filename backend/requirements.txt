@@ -1,0 +1,10 @@
+flask
+flask-cors
+flask-sqlalchemy
+groq
+pdfplumber
+PyPDF2
+python-docx
+werkzeug
+gunicorn
+python-dotenv
