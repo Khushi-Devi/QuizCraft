@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import BASE_URL from '../api.js'
 
 export default function HistoryPage() {
   const [history, setHistory] = useState([])
@@ -7,7 +8,7 @@ export default function HistoryPage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('/quiz-history')
+    fetch(`${BASE_URL}/quiz-history`)
       .then(r => r.json())
       .then(d => { setHistory(d); setLoading(false) })
       .catch(() => setLoading(false))
@@ -15,7 +16,7 @@ export default function HistoryPage() {
 
   const handleDelete = async (id) => {
     if (!confirm('Delete this quiz and all its attempts?')) return
-    await fetch(`/quiz/${id}`, { method: 'DELETE' })
+    await fetch(`${BASE_URL}/quiz/${id}`, { method: 'DELETE' })
     setHistory(h => h.filter(q => q.id !== id))
   }
 

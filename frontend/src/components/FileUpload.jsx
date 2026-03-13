@@ -18,7 +18,7 @@ export default function FileUpload({ onFileUploaded }) {
     const form = new FormData()
     form.append('file', file)
     try {
-      const res = await fetch('/upload', { method: 'POST', body: form })
+      const res = await fetch(`${BASE_URL}/upload`, { method: 'POST', body: form })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Upload failed')
       onFileUploaded(data)

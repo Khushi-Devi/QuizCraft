@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import QuizCard from '../components/QuizCard'
+import BASE_URL from '../api.js'
 
 const PAGE_SIZE = 10
 
@@ -18,7 +19,7 @@ export default function QuizPage() {
   const [page, setPage] = useState(0)
 
   useEffect(() => {
-    fetch(`/quiz/${quizId}`)
+    fetch(`${BASE_URL}/quiz/${quizId}`)
       .then(r => r.json())
       .then(d => { setQuiz(d); setLoading(false) })
       .catch(() => { setError('Failed to load quiz.'); setLoading(false) })
@@ -40,7 +41,7 @@ export default function QuizPage() {
   const handleSubmit = async () => {
     setSubmitting(true)
     try {
-      const res = await fetch('/submit-quiz', {
+      const res = await fetch(`${BASE_URL}/submit-quiz`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ quiz_id: quizId, answers }),

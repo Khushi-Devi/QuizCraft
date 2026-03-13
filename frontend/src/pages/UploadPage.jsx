@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FileUpload from '../components/FileUpload'
+import BASE_URL from '../api.js'
 
 export default function UploadPage() {
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ export default function UploadPage() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/generate-quiz', {
+      const res = await fetch(`${BASE_URL}/generate-quiz`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: uploaded.text, num_questions: numQ, title }),
