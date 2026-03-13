@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-
+import BASE_URL from '../api.js'
 export default function FileUpload({ onFileUploaded }) {
   const [dragging, setDragging] = useState(false)
   const [loading, setLoading] = useState(false)
